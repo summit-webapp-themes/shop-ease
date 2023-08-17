@@ -1,0 +1,14 @@
+.profile_section {
+    .tab_width{
+        width: 200px;
+    }
+}
+.nav-tabs .nav-link.active {
+    color: $white-color !important;
+    background-color: $secondaryTheme-secondarycolor !important;
+   
+}
+.btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active {
+    background-color: transparent !important;
+    border-color: none !important;
+}
