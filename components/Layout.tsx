@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import Footer from "./Footer";
 import Navbar from "./Navbar/Navbar";
-import SecondaryThemeNavbar from "./Home_page2/SecondaryThemeNavbar/SecondaryThemeNavbar";
-import SecondaryThemeFooter from "./Home_page2/SecondaryThemeFooter";
+
 
 const Layout = ({ children }: any) => {
   const router = useRouter();
@@ -21,14 +20,10 @@ const Layout = ({ children }: any) => {
 
   return (
     <>
-      {router.pathname === "/home2"
-        ? toShowHeader && <SecondaryThemeNavbar />
-        : toShowHeader && <Navbar />}
+      {toShowHeader && <Navbar />}
       {children}
 
-      {router.pathname === "/home2"
-        ? toShowFooter && <SecondaryThemeFooter />
-        : toShowFooter && <Footer />}
+      {toShowFooter && <Footer />}
     </>
   );
 };

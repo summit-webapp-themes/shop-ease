@@ -11,7 +11,7 @@ import HomeTopCategoriesBanner from "./HomeTopCategories/HomeTopCategoriesBanner
 import DisplayTagMaster from "./DisplayTags/DisplayTagMaster";
 import { askForPermissionToReceiveNotifications } from "../push-notifications";
 
-const HomePage = () => {
+const HomePageMaster = () => {
   // useEffect(()=>
   // {
   //   askForPermissionToReceiveNotifications();
@@ -60,4 +60,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HomePageMaster;

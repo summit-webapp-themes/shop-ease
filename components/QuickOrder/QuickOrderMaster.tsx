@@ -6,6 +6,8 @@ import { useQuickOrder } from "../../hooks/GeneralHooks/QuickOrderHooks/quick-or
 import { useRouter } from "next/router";
 import AddToCartApi from "../../services/api/cart-page-api/add-to-cart-api";
 import { SelectedFilterLangDataFromStore } from "../../store/slices/general_slices/selected-multilanguage-slice";
+import { currency_selector_state } from "../../store/slices/general_slices/multi-currency-slice";
+import { failmsg, hideToast, successmsg } from "../../store/slices/general_slices/toast_notification_slice";
 
 const QuickOrder = () => {
   const {
@@ -24,11 +26,13 @@ const QuickOrder = () => {
     token_value,
     selected_currency,
   } = useQuickOrder();
-  console.log("enter part", partNumbersData);
+ 
   const router = useRouter();
+  const dispatch = useDispatch()
+  const currency_state_from_redux: any = useSelector(currency_selector_state);
   const [ItemCodename, setItemCodename] = useState<any>();
   const [ItemCodeMinQty, setItemCodeMinQty] = useState<any>();
-
+  console.log("enter part", currency_state_from_redux);
   const SelectedLangDataFromStore: any = useSelector(
     SelectedFilterLangDataFromStore
   );
@@ -80,7 +84,20 @@ const QuickOrder = () => {
         });
       });
     console.log(ItemCodename, "mmmm");
-    await AddToCartApi(addCartData, selected_currency, token_value);
+   const addCardQuickOrder = await AddToCartApi(addCartData, currency_state_from_redux?.selected_currency_value, token_value);
+   console.log(addCardQuickOrder,"addCardQuickOrder")
+   if (addCardQuickOrder.msg === "success") {
+   dispatch(successmsg("Item Added to cart"));
+   setTimeout(() => {
+     dispatch(hideToast());
+   }, 1200);
+  }
+   else {
+    dispatch(failmsg(addCardQuickOrder.error));
+    setTimeout(() => {
+      dispatch(hideToast());
+    }, 1200);
+   }
     // dispatch(dealerAddCartApi(addCartData));
     handleClearReduxStore();
 
