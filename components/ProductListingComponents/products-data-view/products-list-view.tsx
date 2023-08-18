@@ -2,11 +2,13 @@ import { ProductsProps } from "../../../interfaces/products-view-interface";
 import ProductListViewCard from "../../../cards/product-list-view-card";
 import ListViewLoadingLayout from "./ListViewLoadingLayout";
 import { Norecord } from "../../NoRecord";
-
+import { useState } from "react";
+import ReactPaginate from "react-paginate";
 const ProductsListView = (props: ProductsProps) => {
   // console.log("product card", props.product_data);
 
   const {
+    listItems,
     productListTotalCount,
     loading,
     product_data,
@@ -19,14 +21,28 @@ const ProductsListView = (props: ProductsProps) => {
     catalogListItem,
     handleAddProduct,
     handleSubmitCatalogName,
-    handleChange
+    handleChange,
+    handlePaginationBtn,
   } = props;
 
   console.log("load moreee", productListTotalCount, product_data);
+  const [pageNumber, setPageNumber] = useState<number>(0);
+  const [pageOffset, setpageOffset] = useState<number>(0);
+  const usersPerPage: number = 12;
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const pageCount: any = Math.ceil(productListTotalCount / 12);
+
+  const handlePageClick = (event: any) => {
+    // console.log("page number", event?.selected);
+    handlePaginationBtn(event?.selected);
+    setpageOffset(event?.selected);
+  };
   return (
     <div
-      className={`${filtersData && filtersData?.length > 0 ? "col-lg-9" : "col-lg-12"
-        }`}
+      className={`${
+        filtersData && filtersData?.length > 0 ? "col-lg-9" : "col-lg-12"
+      }`}
     >
       {loading ? (
         <div className="row justify-content-center">
@@ -70,20 +86,20 @@ const ProductsListView = (props: ProductsProps) => {
       )}
 
       {productListTotalCount > product_data?.length && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <button
-            className="btn btn-primary my-5"
-            style={{ border: '1px solid #0071DC', borderRadius: "7px", backgroundColor: "#fff" }}
-            onClick={handleLoadMore}
-          >
-            {selectedMultiLangData?.load_more}
-          </button>
+        <div>
+          <ReactPaginate
+            previousLabel={selectedMultiLangData?.prev}
+            nextLabel={selectedMultiLangData?.next}
+            pageCount={pageCount}
+            pageRangeDisplayed={3}
+            onPageChange={handlePageClick}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+            forcePage={pageOffset}
+          />
         </div>
       )}
     </div>

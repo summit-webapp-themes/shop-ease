@@ -169,17 +169,11 @@ const MyOrderCard = ({ data, selectedMultiLangData }: any) => {
                             className="px-0 py-0 pb-0 myorder_width"
                           >
                             <p className="text-capitalize black mb-0 myorder_p">
-                              {detail?.prod_info[1]?.value !== 0 ? (
                                 <p className="mb-0">
                                   {" "}
                                   : {data?.currency_symbol}{" "}
                                   {detail.prod_info[1]?.value}
-                                </p>
-                              ) : (
-                                <p className="border price_request">
-                                  {selectedMultiLangData?.price_on_request}
-                                </p>
-                              )}
+                                </p> 
                             </p>
                           </td>
                         </tr>

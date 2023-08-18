@@ -67,7 +67,7 @@
 .order_links {
   font-size: 13px;
   font-weight: 600;
-  border: 1px solid $primary-color;
+  border: 1px solid $secondaryTheme-secondarycolor;
   width: 100%;
   color: $white-color;
   padding: 4px 10px;
@@ -84,8 +84,8 @@
   color: $white-color !important;
 }
 .order_links:hover {
-  border: 1px solid $primary-color;
-  background: $primary-color;
+  border: 1px solid $secondaryTheme-secondarycolor;
+  background: $secondaryTheme-secondarycolor;
   color: $white-color !important;
 }
 .order_linkshover:hover {

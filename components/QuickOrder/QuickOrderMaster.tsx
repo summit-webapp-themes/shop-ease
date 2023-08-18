@@ -142,26 +142,14 @@ const QuickOrder = () => {
               <div className="d-flex">
                 <button
                   type="button"
-                  className="w-50 mb-3 text-uppercase py-2 px-1 me-3"
-                  style={{
-                    border: "1px solid #0071DC",
-                    borderRadius: "7px",
-                    backgroundColor: "#0071DC",
-                    color: "#fff",
-                  }}
+                  className="w-50 mb-3 text-uppercase py-2 px-1 me-3 standard_button_filled"               
                   onClick={handleClearReduxStore}
                 >
                   {selectedMultiLangData?.reset_form}
                 </button>
                 <button
                   type="button"
-                  className="w-50 text-white mb-3 text-uppercase py-2 px-1 standard_btn me-3"
-                  style={{
-                    border: "1px solid #0071DC",
-                    borderRadius: "7px",
-                    backgroundColor: "#0071DC",
-                    color: "#fff",
-                  }}
+                  className="w-50 text-white mb-3 text-uppercase py-2 px-1 standard_btn me-3 standard_button_filled"
                   onClick={handleAddCart}
                 >
                   {selectedMultiLangData?.add_to_cart}
@@ -214,6 +202,7 @@ const QuickOrder = () => {
               <input
                 type="text"
                 name="inputValue"
+                className="quickOrder-field"
                 value={partNumberInputField}
                 onChange={(e: any) => setPartNumberInputField(e.target.value)}
                 onKeyDown={(e: any) => handleKeyDown(e)}

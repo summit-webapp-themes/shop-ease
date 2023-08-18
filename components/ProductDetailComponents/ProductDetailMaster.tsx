@@ -103,6 +103,7 @@ const ProductDetailMaster = () => {
                 <Norecord
                   heading={selectedMultiLangData?.product_not_found}
                   content={selectedMultiLangData?.product_not_found_s}
+                  selectedMultiLangData={selectedMultiLangData}
                 />
               )}
             </>

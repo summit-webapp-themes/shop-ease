@@ -37,12 +37,7 @@ export const Norecord = ({
                   onClick={() => {
                     setShowMissingPartsModal(true);
                   }}
-                  className="btn btn-warning my-4 text-dark"
-                  style={{
-                    border: "1px solid #0071DC",
-                    borderRadius: "7px",
-                    backgroundColor: "#fff",
-                  }}
+                  className="btn btn-warning my-4 text-dark  standard_button"
                 >
                   {selectedMultiLangData?.let_us_know}
                 </button>
@@ -51,15 +46,11 @@ export const Norecord = ({
           ) : (
             <button
               type="button"
-              className="btn btn-warning my-4 text-dark"
+              className="btn btn-warning my-4 text-dark  standard_button"
               onClick={() => {
                 router.push("/");
               }}
-              style={{
-                border: "1px solid #0071DC",
-                borderRadius: "7px",
-                backgroundColor: "#fff",
-              }}
+           
             >
               {selectedMultiLangData?.shop_now}
             </button>

@@ -1,9 +1,10 @@
+import { useState } from "react";
 import CardsLoadingLayout from "../../../cards/CardsLoadingLayout";
 import ProductCard from "../../../cards/product-card";
 import { ProductsViewProps } from "../../../interfaces/products-view-interface";
-import styles from "../../../styles/Product_Listing.module.css";
 import { Norecord } from "../../NoRecord";
 import Topbar from "../Topbar";
+import ReactPaginate from "react-paginate";
 
 const ProductsGridView = (props: ProductsViewProps) => {
   const {
@@ -18,9 +19,22 @@ const ProductsGridView = (props: ProductsViewProps) => {
     catalogListItem,
     handleAddProduct,
     handleSubmitCatalogName,
-    handleChange
+    handleChange,
+    handlePaginationBtn,
   } = props;
 
+  const [pageNumber, setPageNumber] = useState<number>(0);
+  const [pageOffset, setpageOffset] = useState<number>(0);
+  const usersPerPage :number= 12;
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const pageCount:any = Math.ceil(productListTotalCount / 12);
+
+  const handlePageClick = (event: any) => {
+    // console.log("page number", event?.selected);
+    handlePaginationBtn(event?.selected);
+    setpageOffset(event?.selected);
+  };
   console.log("cube in card", listItems);
   return (
     <div
@@ -76,23 +90,22 @@ const ProductsGridView = (props: ProductsViewProps) => {
       </div>
 
       {productListTotalCount > listItems?.length && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <button
-            className="btn btn-primary my-5"
-            style={{ border: '1px solid #0071DC', borderRadius: "7px", backgroundColor: "#fff" }}
-
-            onClick={handleLoadMore}
-          >
-            {selectedMultiLangData?.load_more}
-          </button>
-        </div>
-      )}
+            <div>
+              <ReactPaginate
+                previousLabel={selectedMultiLangData?.prev}
+                nextLabel={selectedMultiLangData?.next}
+                pageCount={pageCount}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+                forcePage={pageOffset}
+              />
+            </div>
+          )}
     </div>
   );
 };

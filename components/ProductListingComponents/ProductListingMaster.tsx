@@ -25,6 +25,7 @@ const ProductListingMaster = () => {
     handleToggleProductsListingView,
     handleLoadMore,
     currency_state_from_redux,
+    handlePaginationBtn,
   } = useProductListing();
   console.log("cube ", productListingData);
   const { wishlistData }: any = useWishlist();
@@ -70,6 +71,7 @@ const ProductListingMaster = () => {
             handleAddProduct={handleAddProduct}
             handleSubmitCatalogName={handleSubmitCatalogName}
             handleChange={handleChange}
+            handlePaginationBtn={ handlePaginationBtn}
           />
         );
       case "grid-view":
@@ -87,6 +89,7 @@ const ProductListingMaster = () => {
             handleAddProduct={handleAddProduct}
             handleSubmitCatalogName={handleSubmitCatalogName}
             handleChange={handleChange}
+            handlePaginationBtn={ handlePaginationBtn}
           />
         );
 
